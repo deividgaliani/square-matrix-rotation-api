@@ -1,5 +1,6 @@
 package com.example.squarematrixrotationapi.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.squarematrixrotationapi.exceptions.InvalidMatrixException;
 import com.example.squarematrixrotationapi.services.ISquareMatrixRotationService;
 
 @RestController
@@ -26,11 +28,13 @@ public class SquareMatrixRotationController implements ISquareMatrixRotationCont
 	public ResponseEntity<List<Integer>> rotateMatrix(@RequestBody MatrixVo vo) {
 		List<Integer> response = null;
 		try {
-			response = squareMatrixRotationService.rotateMatrixClockwise(vo.getNumbers());
+			response = squareMatrixRotationService.rotateMatrix(vo.getNumbers());
+			return new ResponseEntity<List<Integer>>(response, HttpStatus.OK);
+		} catch (InvalidMatrixException ime) {
+			return new ResponseEntity<List<Integer>>(new ArrayList<Integer>(), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ResponseEntity<List<Integer>>(new ArrayList<Integer>(), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<List<Integer>>(response, HttpStatus.OK);
 	}
 
 }
