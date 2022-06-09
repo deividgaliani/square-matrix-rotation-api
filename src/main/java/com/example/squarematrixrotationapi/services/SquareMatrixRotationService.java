@@ -1,7 +1,6 @@
 package com.example.squarematrixrotationapi.services;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class SquareMatrixRotationService implements ISquareMatrixRotationService
 	public List<Integer> rotateMatrix(List<Integer> list) throws InvalidMatrixException {
 		int[][] matrix = listToSquareMatrix(list);
 		matrix = rotateMatrixClockwise(matrix);
-		printMatrix(matrix);
+//		printMatrix(matrix);
 		return matrixToList(matrix);
 	}
 	
