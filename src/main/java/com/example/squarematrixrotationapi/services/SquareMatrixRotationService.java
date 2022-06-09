@@ -20,14 +20,19 @@ public class SquareMatrixRotationService implements ISquareMatrixRotationService
 		return matrixToList(matrix);
 	}
 	
+	/**
+	 * retorna uma matriz em uma lista
+	 * @param matrix
+	 * @return
+	 */
 	private List<Integer> matrixToList(int[][] matrix){
 		int size = matrix[0].length;
 		List<Integer> list = new ArrayList<Integer>();
-		int count = 0;
+		int listIndex = 0;
 		
 		for(int row = 0; row < size; row++) {
 			for (int col = 0; col < size; col++) {
-				list.add(count, matrix[row][col]);
+				list.add(listIndex++, matrix[row][col]);
 			}
 		}
 		return list;
